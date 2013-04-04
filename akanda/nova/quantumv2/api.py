@@ -116,7 +116,12 @@ class API(api.API):
 
         self.trigger_security_group_members_refresh(context, instance)
 
-        return self.get_instance_nw_info(context, instance, networks=nets)
+        return self.get_instance_nw_info(
+            context,
+            instance,
+            networks=nets,
+            conductor_api=kwargs.get('conductor_api'),
+        )
 
     def deallocate_for_instance(self, context, instance, **kwargs):
         """Deallocate all network resources related to the instance.
